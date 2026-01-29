@@ -1,4 +1,4 @@
-package sortingStudents;
+package SortingPractice;
 
 /**
  * The Student class keeps track of the following pieces of data
@@ -12,10 +12,9 @@ package sortingStudents;
 
 public class Student {
     /* Private instance variables */
-    private String studentName;   /* The student's name           */
+    private String studentFirstName;   /* The student's first name */
+    private String studentLastName;   /* The student's first name */
     private int studentID;        /* The student's ID number      */
-    private double creditsEarned; /* The number of credits earned */
-    private boolean paidUp;       /* Whether student is paid up   */
 
 	/* Public constants */
 
@@ -24,11 +23,13 @@ public class Student {
 
     /**
      * Creates a new Student object with the specified name and ID.
-     * @param name The student's name as a String
+     * @param fname The student's first name as a String
+     * @param lname The student's first name as a String
      * @param id The student's ID number as an int
      */
-    public Student(String name, int id) {
-        studentName = name;
+    public Student(String fname, String lname, int id) {
+        studentFirstName = fname;
+        studentLastName = lname;
         studentID = id;
     }
 
@@ -37,7 +38,22 @@ public class Student {
      * @return The name of this student
      */
     public String getName() {
-        return studentName;
+        return studentFirstName + " " + studentLastName;
+    }
+    /**
+     * Gets the first name of this student.
+     * @return The first name of this student
+     */
+    public String getFirstName() {
+        return studentFirstName;
+    }
+
+    /**
+     * Gets the last name of this student.
+     * @return The last name of this student
+     */
+    public String getLastName() {
+        return studentLastName;
     }
 
     /**
@@ -49,44 +65,12 @@ public class Student {
     }
 
     /**
-     * Sets the number of credits earned.
-     * @param credits The new number of credits earned
-     */
-    public void setCredits(double credits) {
-        creditsEarned = credits;
-    }
-
-    /**
-     * Gets the number of credits earned.
-     * @return The number of credits this student has earned
-     */
-    public double getCredits() {
-        return creditsEarned;
-    }
-
-    /**
-     * Sets whether the student is paid up.
-     * @param flag The value true or false indicating paid-up status
-     */
-    public void setPaidUp(boolean flag) {
-        paidUp = flag;
-    }
-
-    /**
-     * Returns whether the student is paid up.
-     * @return Whether the student is paid up
-     */
-    public boolean isPaidUp() {
-        return paidUp;
-    }
-
-    /**
      * Creates a string identifying this student.
      * @return The string used to display this student
      */
     @Override
     public String toString() {
-        return studentName + " (#" + studentID + ")";
+        return getName() + " (#" + getID() + ")";
     }
 
     /**
@@ -104,8 +88,8 @@ public class Student {
         boolean result = false;
         if (other != null && other instanceof Student) {
             Student that = (Student) other;
-            result = ((studentName.equals(that.studentName)) &&
-                    (studentID == that.studentID));
+            result = ((getName().equals(that.getName())) &&
+                    (getID() == that.getID()));
         }
         return result;
     }
